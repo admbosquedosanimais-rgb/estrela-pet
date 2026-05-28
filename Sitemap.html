@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clube Estrela Pet — Sitemap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap');
+  html, body { margin: 0; padding: 0; background: #F1ECE2; color: #1F2A1E; }
+  body { font-family: 'Geist', system-ui, sans-serif; -webkit-font-smoothing: antialiased; padding: 48px 28px 80px; }
+  *, *:before, *:after { box-sizing: border-box; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .star { display:inline-block; vertical-align:middle; }
+  .mono { font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; font-size: 10px; color: #6B6856; }
+  .serif { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; letter-spacing: -0.02em; }
+  .serif-it { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; }
+  h1 { font-size: 48px; line-height: 1.0; margin: 0 0 14px; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 22px; margin: 36px 0 14px; letter-spacing: -0.01em; }
+  .gold { color: #B89148; }
+  p.lead { font-size: 15px; line-height: 1.55; color: #3D4A3A; margin: 0 0 36px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  a.card {
+    display: block; padding: 18px 20px; border-radius: 14px;
+    background: #FBF8F2; border: 1px solid rgba(31,42,30,0.12);
+    text-decoration: none; color: inherit; transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    box-shadow: 0 1px 0 rgba(31,42,30,0.06), 0 18px 40px -25px rgba(0,0,0,0.18);
+  }
+  a.card:hover { transform: translateY(-2px); border-color: rgba(184,145,72,0.5); box-shadow: 0 1px 0 rgba(31,42,30,0.06), 0 24px 50px -25px rgba(0,0,0,0.22); }
+  a.card .l { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  a.card .t { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 22px; color: #1F2A1E; letter-spacing: -0.01em; }
+  a.card .arrow { color: #B89148; font-size: 18px; line-height: 0; }
+  a.card .d { font-size: 12.5px; color: #3D4A3A; line-height: 1.45; }
+  a.card .meta { font-family: 'Geist Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #6B6856; text-transform: uppercase; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mono" style="display:flex; align-items:center; gap:8px; margin-bottom:18px;">
+    <svg class="star" width="9" height="9" viewBox="0 0 16 16" fill="#B89148"><polygon points="8,0 9.8,5.5 16,5.5 11,9 12.8,16 8,11.5 3.2,16 5,9 0,5.5 6.2,5.5"/></svg>
+    SITEMAP · CLUBE ESTRELA PET
+  </div>
+
+  <h1 class="serif">Todas as páginas,<br/>em <span class="serif-it gold">um só lugar.</span></h1>
+
+  <p class="lead">Cada arquivo é uma página mobile autônoma. Tudo compartilha o mesmo sistema de design (cremes + verde-floresta + dourado editorial). Clique pra abrir.</p>
+
+  <h2>Páginas comerciais</h2>
+  <div class="grid">
+    <a class="card" href="Manifesto.html">
+      <div class="l"><span class="t">Home · Manifesto</span><span class="arrow">→</span></div>
+      <div class="d">Home cinematográfica — 14 cenas com hero, statement, plataforma dossier, Jornada BDA, Bosque editorial, ecossistema material, planos, fundadores, FAQ, CTA.</div>
+      <div class="meta">/ · MARKETING</div>
+    </a>
+    <a class="card" href="Como Funciona.html">
+      <div class="l"><span class="t">Como Funciona</span><span class="arrow">→</span></div>
+      <div class="d">Jornada em 4 passos com timeline vertical + exemplo da Estrela IA em ação.</div>
+      <div class="meta">/como-funciona · MARKETING</div>
+    </a>
+    <a class="card" href="Plataforma.html">
+      <div class="l"><span class="t">Plataforma</span><span class="arrow">→</span></div>
+      <div class="d">Deep-dive nas 6 funcionalidades com mockups grandes + LGPD/segurança.</div>
+      <div class="meta">/plataforma · MARKETING</div>
+    </a>
+    <a class="card" href="Planos.html">
+      <div class="l"><span class="t">Planos</span><span class="arrow">→</span></div>
+      <div class="d">Cards Essencial/Premium + toggle Mensal/Anual + tabela comparativa + FAQ.</div>
+      <div class="meta">/planos · MARKETING</div>
+    </a>
+    <a class="card" href="Bosque dos Animais.html">
+      <div class="l"><span class="t">Bosque dos Animais</span><span class="arrow">→</span></div>
+      <div class="d">História, números do Bosque, conexão Bosque ↔ Clube, dados de visita.</div>
+      <div class="meta">/bosque · MARKETING</div>
+    </a>
+    <!-- Landing B arquivada — redirecionada pro Manifesto -->
+  </div>
+
+  <h2>Conversão e acesso</h2>
+  <div class="grid">
+    <a class="card" href="Cadastro.html">
+      <div class="l"><span class="t">Cadastro</span><span class="arrow">→</span></div>
+      <div class="d">Fluxo full-page de 5 passos: plano → tutor → pet → pagamento → boas-vindas.</div>
+      <div class="meta">/cadastro · CONVERSÃO</div>
+    </a>
+    <a class="card" href="Login.html">
+      <div class="l"><span class="t">Login</span><span class="arrow">→</span></div>
+      <div class="d">Entrada do associado · validação · link pra recuperar senha e cadastrar.</div>
+      <div class="meta">/login · AUTH</div>
+    </a>
+  </div>
+
+  <h2>Legal e suporte</h2>
+  <div class="grid">
+    <a class="card" href="Termos.html">
+      <div class="l"><span class="t">Termos de Uso</span><span class="arrow">→</span></div>
+      <div class="d">8 seções · CLUBE ESTRELA PET LTDA · CNPJ a preencher · foro BH.</div>
+      <div class="meta">/termos · LEGAL</div>
+    </a>
+    <a class="card" href="Privacidade.html">
+      <div class="l"><span class="t">Política de Privacidade</span><span class="arrow">→</span></div>
+      <div class="d">9 seções · LGPD · dados coletados, finalidade, direitos do titular, DPO.</div>
+      <div class="meta">/privacidade · LGPD</div>
+    </a>
+    <a class="card" href="404.html">
+      <div class="l"><span class="t">404 — Não encontrado</span><span class="arrow">→</span></div>
+      <div class="d">Página de erro minimalista com estrela decorativa e link pra home.</div>
+      <div class="meta">/* · FALLBACK</div>
+    </a>
+  </div>
+
+  <h2>Documentos auxiliares</h2>
+  <div class="grid">
+    <a class="card" href="Estrela Pet — Designs.html">
+      <div class="l"><span class="t">Design Canvas</span><span class="arrow">→</span></div>
+      <div class="d">Comparação Direção A vs B + fluxo de cadastro lado a lado + notas.</div>
+      <div class="meta">EXPLORAÇÃO · INTERNO</div>
+    </a>
+    <a class="card" href="Prompt Lovable.md">
+      <div class="l"><span class="t">Prompt Lovable (criar do zero)</span><span class="arrow">→</span></div>
+      <div class="d">Especificação completa pra reconstruir tudo numa nova workspace Lovable.</div>
+      <div class="meta">HANDOFF · LOVABLE</div>
+    </a>
+    <a class="card" href="Prompt Lovable - Aplicar em todo o site.md">
+      <div class="l"><span class="t">Prompt Lovable (refator)</span><span class="arrow">→</span></div>
+      <div class="d">Aplicar o sistema visual em todas as páginas do projeto existente.</div>
+      <div class="meta">HANDOFF · LOVABLE</div>
+    </a>
+    <a class="card" href="Prompt Lovable - Auditoria e correção.md">
+      <div class="l"><span class="t">Prompt Lovable (auditoria)</span><span class="arrow">→</span></div>
+      <div class="d">Follow-up que força auditoria + relatório de violações + execução.</div>
+      <div class="meta">HANDOFF · LOVABLE</div>
+    </a>
+  </div>
+
+  <div style="margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(31,42,30,0.12); font-size: 11.5px; color: #6B6856; line-height: 1.6;">
+    <strong style="color:#1F2A1E; font-weight:500;">Como navegar:</strong> abra o Manifesto e use o menu hambúrguer no canto superior direito pra circular entre as páginas. Landing A/B estão arquivadas (redirecionam pro Manifesto).o todos conectados. O fluxo de cadastro aparece tanto como modal (clicando "Quero fazer parte" em qualquer página) quanto como página completa (<code>Cadastro.html</code>).
+  </div>
+
+</div>
+</body>
+</html>

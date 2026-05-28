@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clube Estrela Pet — Explorações de Design</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #F1ECE2; overscroll-behavior: none; }
+  body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  *, *:before, *:after { box-sizing: border-box; }
+  button { -webkit-tap-highlight-color: transparent; font-family: inherit; }
+  input, button { font-family: inherit; }
+  /* Headline shell to override the canvas's plain heading */
+  .estrela-canvas-header { position: fixed; top: 16px; left: 24px; z-index: 100; pointer-events: none;
+    font-family: 'Cormorant Garamond', Georgia, serif; }
+  .estrela-canvas-header .t1 { font-size: 22px; color: #1F2A1E; line-height: 1; font-weight: 500; letter-spacing: -0.015em; }
+  .estrela-canvas-header .t2 { font-family: 'Geist Mono', monospace; font-size: 10px; color: rgba(31,42,30,0.55); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<!-- React + Babel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Starter -->
+<script type="text/babel" src="design-canvas.jsx"></script>
+
+<!-- App -->
+<script type="text/babel" src="src/tokens.jsx"></script>
+<script type="text/babel" src="src/widgets.jsx"></script>
+<script type="text/babel" src="src/mockups.jsx"></script>
+<script type="text/babel" src="src/asaas.jsx"></script>
+<script type="text/babel" src="src/signup.jsx"></script>
+
+<script type="text/babel">
+const { useState } = React;
+
+// Inject the shared font styles
+const styleEl = document.createElement('style');
+styleEl.textContent = window.typeStyles;
+document.head.appendChild(styleEl);
+
+// Phone-shaped wrapper that grows to natural content height (no internal scroll).
+// We DON'T use IOSDevice here because it has fixed height + overflow:auto.
+function PhoneShell({ width = 390, dark = false, children }) {
+  const bezel = dark ? '#0A1410' : '#2A3528';
+  return (
+    <div style={{
+      width: width + 16, padding: 8, background: bezel, borderRadius: 38,
+      boxShadow: '0 30px 80px -20px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)',
+      position: 'relative',
+    }}>
+      {/* Dynamic island */}
+      <div style={{
+        position: 'absolute', top: 18, left: '50%', transform: 'translateX(-50%)',
+        width: 110, height: 30, borderRadius: 18, background: '#000', zIndex: 50,
+      }}/>
+      <div style={{
+        width, borderRadius: 30, overflow: 'hidden', background: '#fff',
+        position: 'relative',
+      }}>
+        {/* Status bar shim */}
+        <div style={{
+          height: 56, background: 'transparent', position: 'relative', zIndex: 40,
+          display:'flex', alignItems:'center', justifyContent:'space-between',
+          padding:'0 26px', color: dark ? '#fff' : '#000',
+          fontFamily:'-apple-system, system-ui, sans-serif', fontSize: 15, fontWeight: 600,
+        }}>
+          <span style={{paddingTop:14}}>9:41</span>
+          <span style={{paddingTop:14, display:'flex', gap:6, alignItems:'center'}}>
+            <svg width="17" height="11" viewBox="0 0 17 11"><path d="M8.5 2.5C10.5 2.5 12.4 3.3 13.7 4.6L14.7 3.7C13.1 2 10.9 1 8.5 1C6.1 1 3.9 2 2.3 3.7L3.3 4.6C4.6 3.3 6.5 2.5 8.5 2.5Z" fill="currentColor"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/></svg>
+            <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="3" stroke="currentColor" strokeOpacity="0.4" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.5" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div style={{marginTop: -56, position:'relative', zIndex:1}}>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [signupOpen, setSignupOpen] = useState(false);
+
+  return (
+    <>
+      <div className="estrela-canvas-header">
+        <div className="t1">Clube <span style={{fontStyle:'italic', color:'#B89148'}}>Estrela</span> Pet</div>
+        <div className="t2">Explorações de design · mobile · maio 2026</div>
+      </div>
+
+      <DesignCanvas>
+        {/* ───────────── DIREÇÃO A vs B ───────────── */}
+        <DCSection
+          id="directions"
+          title="Duas direções de landing"
+          subtitle="Mesmo conteúdo, dois tratamentos visuais — clique pra abrir em tela cheia, ou abra os arquivos isolados (Landing A.html / Landing B.html)."
+        >
+          <DCArtboard id="A" label="A · Editorial Calmo (cream + verde) · mesclado c/ site" width={406} height={12200}>
+            <PhoneShell width={390} dark={false}>
+              <LandingA onOpenSignup={()=>setSignupOpen(true)}/>
+            </PhoneShell>
+          </DCArtboard>
+
+          <DCArtboard id="B" label="B · Premium Escuro (verde-noite + dourado)" width={406} height={11600}>
+            <PhoneShell width={390} dark={true}>
+              <LandingB onOpenSignup={()=>setSignupOpen(true)}/>
+            </PhoneShell>
+          </DCArtboard>
+        </DCSection>
+
+        {/* ───────────── FLUXO DE CADASTRO ───────────── */}
+        <DCSection
+          id="signup"
+          title="Fluxo de cadastro — Quero fazer parte"
+          subtitle="4 passos + boas-vindas · validação real (CPF, e-mail, LGPD) · clique 'Quero fazer parte' em qualquer landing pra abrir o modal interativo."
+        >
+          <DCArtboard id="s1" label="01 · Escolher plano" width={406} height={950}>
+            <PhoneShell width={390}><SignupPreview step={1}/></PhoneShell>
+          </DCArtboard>
+          <DCArtboard id="s2" label="02 · Dados do tutor" width={406} height={950}>
+            <PhoneShell width={390}><SignupPreview step={2}/></PhoneShell>
+          </DCArtboard>
+          <DCArtboard id="s3" label="03 · Dados do pet" width={406} height={950}>
+            <PhoneShell width={390}><SignupPreview step={3}/></PhoneShell>
+          </DCArtboard>
+          <DCArtboard id="s4" label="04 · Pagamento" width={406} height={1100}>
+            <PhoneShell width={390}><SignupPreview step={4}/></PhoneShell>
+          </DCArtboard>
+          <DCArtboard id="s5" label="05 · Boas-vindas (Fundador)" width={406} height={1000}>
+            <PhoneShell width={390} dark={true}><SignupPreview step={5}/></PhoneShell>
+          </DCArtboard>
+        </DCSection>
+
+        {/* ───────────── NOTAS ───────────── */}
+        <DCSection
+          id="notes"
+          title="Notas de design"
+          subtitle="O que está e não está pronto pra ir pra produção."
+        >
+          <DCPostIt color="#FFF6D6" x={40} y={20}>
+            <strong>Dir. A — Editorial Calmo</strong><br/>
+            Refina o site atual (verde-floresta + cream + dourado). Tom equilibrado: afeto na abertura, racional no meio, sensível no fim. Aposta em <em>respiro</em> e tipografia editorial.
+          </DCPostIt>
+          <DCPostIt color="#E8DFD2" x={300} y={40}>
+            <strong>Dir. B — Premium Escuro</strong><br/>
+            Inverte: base verde-noite com dourado quente e cream. Mais "clube exclusivo". Reforça o badge de fundador, headline tipográfica grande, glass-cards. Diferencia da concorrência pet.
+          </DCPostIt>
+          <DCPostIt color="#FFF6D6" x={580} y={30}>
+            <strong>Mockups da plataforma</strong><br/>
+            Carteira, Jornada Saúde, Jornada Financeira, Lembretes e Memórias estão originais. Quando tiver UI real do app, é só plugar no mesmo slot.
+          </DCPostIt>
+          <DCPostIt color="#E8DFD2" x={840} y={60}>
+            <strong>Próximos passos</strong><br/>
+            • capturar 3 depoimentos reais (placeholders prontos)<br/>
+            • plugar contador real de vagas no backend (hoje mostra 37/100 mockado)<br/>
+            • validar copy "única plataforma" pra ads Meta<br/>
+            • Pixel Meta + GA4 nos CTAs<br/>
+            • páginas legais com novo CNPJ
+          </DCPostIt>
+        </DCSection>
+      </DesignCanvas>
+
+      <SignupModal open={signupOpen} onClose={()=>setSignupOpen(false)}/>
+    </>
+  );
+}
+
+// Renders one signup step with sample data, for the design canvas preview
+function SignupPreview({ step }) {
+  const tutor = { nome:'Maria Fernanda Silva', email:'maria@email.com.br', celular:'(31) 99412-7780', cpf:'123.456.789-00', lgpd:true };
+  const pet   = { especie:'cao', nome:'Luna', nasc:'03/2022', peso:'12,4', raca:'SRD' };
+  const pay   = { metodo:'card', numero:'4242 4242 4242 4242', titular:'MARIA F SILVA', validade:'08/29', cvv:'123' };
+  const plan  = 'premium';
+  const noop  = ()=>{};
+
+  if (step === 1) return <StepPlan plan={plan} setPlan={noop} onNext={noop}/>;
+  if (step === 2) return <StepTutor tutor={tutor} setTutor={noop} onNext={noop} onBack={noop}/>;
+  if (step === 3) return <StepPet pet={pet} setPet={noop} onNext={noop} onBack={noop}/>;
+  if (step === 4) return <StepPayment pay={pay} setPay={noop} plan={plan} onComplete={noop} onBack={noop}/>;
+  if (step === 5) return <StepWelcome tutor={tutor} pet={pet} plan={plan} onClose={noop}/>;
+  return null;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+</body>
+</html>
